@@ -1,0 +1,80 @@
+.reports-container {
+    padding: var(--space-6) var(--space-8);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.reports-header {
+    margin-bottom: var(--space-6);
+}
+
+.reports-header h2 {
+    font-size: 2.5rem;
+    color: var(--color-text-main);
+}
+
+.report-card {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.report-card label {
+    font-weight: 600;
+    color: var(--color-text-main);
+    font-size: 1rem;
+}
+
+.report-card input {
+    font-size: 1rem;
+    padding: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    width: 100%;
+}
+
+.report-card input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary-light);
+    outline: none;
+}
+
+.report-card button {
+    background-color: var(--color-primary);
+    color: white;
+    font-size: 1rem;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-fast);
+    align-self: flex-start;
+}
+
+.report-card button:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.report-card button:disabled {
+    background-color: var(--color-text-muted);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.pdf-viewer {
+    margin-top: var(--space-6);
+    background-color: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+}
+
+.pdf-viewer iframe {
+    border: none;
+    border-radius: var(--radius-md);
+}

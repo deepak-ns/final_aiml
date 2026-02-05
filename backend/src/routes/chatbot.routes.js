@@ -1,16 +1,10 @@
 import express from "express";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import fetch from "node-fetch";
 
-const GEMINI_API_KEY = "AIzaSyCPbfiq4HMt_ZBnW8If0CxpP9GxNxty038";
 const router = express.Router();
 
-const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-
-const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-flash",
-    systemInstruction:
-        "You are an expert in hydraulic systems. You answer questions on components and maintenance. Speak concisely and do not use any markdown formatting like bold, italics, or lists. Dont answer any question that is not related to hydraulic systems",
-});
+// ✅ FIX 1: correct FastAPI endpoint
+const FASTAPI_URL = "http://127.0.0.1:8000/ask";
 
 router.post("/", async (req, res) => {
     try {
@@ -20,12 +14,30 @@ router.post("/", async (req, res) => {
             return res.status(400).json({ error: "Message is required" });
         }
 
-        const chat = model.startChat({ history: [] });
-        const result = await chat.sendMessage(message);
+        // 🔁 Forward request to FastAPI SQL Agent
+        const fastApiResponse = await fetch(FASTAPI_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            // ✅ FIX 2: FastAPI expects "question"
+            body: JSON.stringify({ question: message }),
+        });
 
-        res.json({ reply: result.response.text() });
+        if (!fastApiResponse.ok) {
+            const errorText = await fastApiResponse.text();
+            throw new Error(errorText);
+        }
+
+        const data = await fastApiResponse.json();
+
+        // ✅ FIX 3: FastAPI returns { response: ... }
+        res.json({
+            reply: data.response,
+        });
+
     } catch (err) {
-        console.error("Chatbot error:", err.message);
+        console.error("Chatbot proxy error:", err);
         res.status(500).json({ error: "Chatbot failed" });
     }
 });

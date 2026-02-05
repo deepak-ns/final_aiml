@@ -2,48 +2,43 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--color-surface);
+  background: linear-gradient(
+    180deg,
+    var(--color-surface),
+    var(--color-bg)
+  );
   color: var(--color-text-main);
-  padding: 0 var(--space-8);
-  height: 100px;
+  padding: 0 var(--space-10);
+  height: 88px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(6px);
 }
 
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: var(--space-8);
 }
 
 .navbar-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--color-primary);
+  font-size: 1.15rem;          /* smaller, logo-like */
+  font-weight: 600;            /* not too bold */
+  letter-spacing: 0.6px;       /* logo spacing */
+  color: #2f3a45;              /* slightly dark, professional */
+  text-transform: uppercase;   /* logo feel */
   margin: 0;
+  white-space: nowrap;
+  opacity: 0.9;
+  padding-left: 10px;
 }
 
-.navbar a {
-  color: var(--color-text-muted);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.3rem;
-  padding: var(--space-3) var(--space-5);
-  border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
-}
 
-.navbar a:hover,
-.navbar a.active {
-  color: var(--color-primary);
-  background-color: var(--color-primary-light);
-  font-weight: 700;
-}
+/* ---------------- LINKS ---------------- */
 
 .navbar-right {
   display: flex;
@@ -51,31 +46,72 @@
   gap: var(--space-6);
 }
 
+.navbar a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.15rem;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+}
+
+.navbar a:hover {
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+}
+
+.navbar a.active {
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  font-weight: 700;
+  box-shadow: inset 0 -2px 0 var(--color-primary);
+}
+
+/* ---------------- OPERATOR BADGE ---------------- */
+
+.operator {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--color-text-main);
+  background: linear-gradient(
+    135deg,
+    var(--color-bg),
+    var(--color-surface)
+  );
+  padding: var(--space-2) var(--space-6);
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  white-space: nowrap;
+}
+
+/* ---------------- LOGOUT BUTTON ---------------- */
+
 .navbar-right button {
-  background-color: var(--color-surface);
+  background-color: transparent;
   color: var(--color-text-muted);
   border: 1px solid var(--color-border);
   padding: var(--space-3) var(--space-6);
   border-radius: var(--radius-md);
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   display: flex;
   align-items: center;
   gap: var(--space-3);
+  transition: all 0.2s ease;
 }
 
 .navbar-right button:hover {
-  background-color: var(--color-bg);
+  background-color: rgba(220, 38, 38, 0.08);
   color: var(--color-danger);
   border-color: var(--color-danger);
 }
 
-.operator {
-  font-weight: 600;
-  font-size: 1.2rem;
-  color: var(--color-text-main);
-  background-color: var(--color-bg);
-  padding: var(--space-2) var(--space-5);
-  border-radius: var(--radius-full);
-  border: 1px solid var(--color-border);
+.navbar-right button svg {
+  transition: transform 0.2s ease;
+}
+
+.navbar-right button:hover svg {
+  transform: translateX(2px);
 }

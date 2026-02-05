@@ -1,10 +1,11 @@
 import dotenv from "dotenv";
 dotenv.config();
-import { GoogleGenerativeAI } from "@google/generative-ai";
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-flash",
+
+import OpenAI from "openai";
+
+const client = new OpenAI({
+    apiKey: process.env.GROQ_API_KEY,
+    baseURL: "https://api.groq.com/openai/v1",
 });
 
 export async function generateAIAnalysis(interpretations) {
@@ -17,7 +18,6 @@ Give:
 - Maintenance advice
 - Future predictions
 
-
 Cite specific timestamps for critical events.
 Do NOT use markdown symbols.
 Do not use quotes
@@ -27,6 +27,21 @@ Data:
 ${JSON.stringify(interpretations)}
 `;
 
-    const result = await model.generateContent(prompt);
-    return result.response.text();
+    const response = await client.chat.completions.create({
+        model: "openai/gpt-oss-20b",
+        messages: [
+            {
+                role: "system",
+                content:
+                    "You are an expert in hydraulic systems. You analyze system behavior, degradation patterns, and maintenance needs. Respond concisely and professionally.",
+            },
+            {
+                role: "user",
+                content: prompt,
+            },
+        ],
+        temperature: 0.2,
+    });
+
+    return response.choices[0].message.content;
 }

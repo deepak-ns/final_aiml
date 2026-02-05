@@ -5,10 +5,10 @@ export default function Charts({ data }) {
   const chartData = data.slice(-100);
 
   const configs = [
-    { key: "output1", name: "Cooler condition %", color: "#2563eb" },
-    { key: "output2", name: "Valve condition %", color: "#10b981" },
-    { key: "output3", name: "Pump leakage", color: "#f59e0b" },
-    { key: "output4", name: "Hydraulic accumulator pressure %", color: "#ef4444" },
+    { key: "output1", name: "Cooler condition ", color: "#2563eb" },
+    { key: "output2", name: "Valve condition ", color: "#10b981" },
+    { key: "output3", name: "Pump Condition", color: "#f59e0b" },
+    { key: "output4", name: "Hydraulic accumulator pressure Condition", color: "#ef4444" },
   ];
 
   return (

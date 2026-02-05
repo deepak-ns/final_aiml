@@ -8,7 +8,7 @@ export default function Navbar({ operator, logout }) {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <h1 className="navbar-title">Intelligent Predictive Hydraulic Maintenance</h1>
+        <h1 className="navbar-title">Intelligent Predictive Maintenance For Hydraulic Systems</h1>
       </div>
 
       <div className="navbar-right">

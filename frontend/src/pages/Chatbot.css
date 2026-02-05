@@ -1,77 +1,126 @@
-.chat-page {
-    padding: var(--space-6) var(--space-8);
-    max-width: 1400px;
-    margin: 0 auto;
+/* ====== CONTAINER ====== */
+.chat-widget {
+  max-width: 420px;
+  height: 600px;
+
+  margin: 0 auto;
+  margin-top: -20px; /* ⬆️ move up slightly */
+
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e5e7eb;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-.chat-page h2 {
-    font-size: 2.5rem;
-    color: var(--color-text-main);
-    margin-bottom: var(--space-6);
+
+
+/* ====== HEADER ====== */
+.chat-widget h3 {
+  padding: 14px 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: center;
+  color: #374151;
+  background: #fafafa;
 }
 
+/* ====== CHAT AREA ====== */
 .chat-box {
-    height: 500px;
-    overflow-y: auto;
-    background: var(--color-surface);
-    padding: var(--space-6);
-    border-radius: var(--radius-lg);
-    margin-bottom: var(--space-6);
-    border: 1px solid var(--color-border);
-    box-shadow: var(--shadow-sm);
+  flex: 1;
+  padding: 14px;
+  overflow-y: auto;
+  background: #f9fafb;
 }
 
+/* ====== MESSAGES ====== */
 .chat-msg {
-    padding: var(--space-3) var(--space-4);
-    margin-bottom: var(--space-3);
-    border-radius: var(--radius-md);
-    max-width: 70%;
-    line-height: 1.5;
-    font-size: 1rem;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-width: 85%;
+  position: relative;
+  word-wrap: break-word;
 }
 
+/* User (ChatGPT-style bubble) */
 .chat-msg.user {
-    background: var(--color-primary);
-    color: white;
-    margin-left: auto;
+  background: #2563eb;
+  color: #ffffff;
+  margin-left: auto;
+  border-bottom-right-radius: 4px;
 }
 
+/* Bot (ChatGPT-style flat bubble) */
 .chat-msg.bot {
-    background: var(--color-bg);
-    color: var(--color-text-main);
-    border: 1px solid var(--color-border);
+  background: #ffffff;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+  border-bottom-left-radius: 4px;
 }
 
+/* ====== SPEAK ICON ====== */
+.speak-icon {
+  position: absolute;
+  bottom: 6px;
+  right: 8px;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.speak-icon:hover {
+  opacity: 1;
+}
+
+/* ====== INPUT AREA ====== */
 .chat-input {
-    display: flex;
-    gap: var(--space-4);
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid #e5e7eb;
+  background: #ffffff;
 }
 
+/* Input field (ChatGPT-like) */
 .chat-input input {
-    flex: 1;
-    padding: var(--space-3);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
-    font-size: 1rem;
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  outline: none;
 }
 
 .chat-input input:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px var(--color-primary-light);
-    outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
 }
 
+/* Send button */
 .chat-input button {
-    padding: var(--space-3) var(--space-6);
-    background: var(--color-primary);
-    color: white;
-    border: none;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    font-weight: 600;
-    transition: background-color var(--transition-fast);
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0 14px;
+  cursor: pointer;
+  font-weight: 600;
 }
 
-.chat-input button:hover {
-    background-color: var(--color-primary-hover);
+/* Mic button */
+.icon-btn {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  background: #f3f4f6;
 }
